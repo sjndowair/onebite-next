@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return <>
   <header><Link href={`/`}>home</Link>
-   | <Link href={`/book/1`}>book</Link> | <Link href={`/search`}>search</Link>
+   | <Link href={`/book/1`}>book</Link> | <Link href={`/search`} prefetch={false}>search</Link>
    <button type="submit" onClick={() => {
     onClickButton()
    }}>테스트</button></header>
