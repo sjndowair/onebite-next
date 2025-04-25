@@ -1,0 +1,30 @@
+.container {
+    display:flex;
+    gap:1.25rem;
+    padding: 1.5rem 0.74rem;
+    border-bottom: rgb(220,220,220) 1px solid;
+    text-decoration: none;
+    color:black
+
+}
+.container:hover{
+    cursor: pointer;
+}
+
+.container img{
+    width: 80px;
+
+}
+
+.title{
+    font-weight: 900;
+}
+
+.subtitle{
+    word-break: keep-all;
+ 
+}
+
+.author{
+    color:gray
+}

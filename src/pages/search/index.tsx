@@ -1,7 +1,16 @@
 import SearchAbleLayoutBar from "../components/SearchAbleLayoutBar";
+import mock from "@/mock/mock.json"
+import BookItem from "../components/BookItem";
 
 const Search = () => {
-    return (<div>search page</div>)
+    return (
+        <>
+        {mock.map((item) => (
+            <BookItem key={item.id} {...item} />
+        ))}
+        </>
+    )
+    
 }
 
 export default Search;
