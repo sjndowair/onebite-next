@@ -1,11 +1,11 @@
-import { useRouter } from "next/router"
+import SearchAbleLayoutBar from "../components/SearchAbleLayoutBar";
 
 const Search = () => {
-   
-    const router = useRouter()
-    const { query } = router
-    const q = query.q
+    return (<div>search page</div>)
+}
 
-    return(<h1>search page {q}</h1>)
- }
- export default Search
+export default Search;
+
+Search.getLayout = (page: React.ReactNode) => {
+    return <SearchAbleLayoutBar>{page}</SearchAbleLayoutBar>;
+}
