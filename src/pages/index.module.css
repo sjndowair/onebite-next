@@ -19,6 +19,7 @@
 
 .searchLayout{
     display: flex ;
+      
         gap: 10px;
         margin-bottom: 20px;
     }
@@ -39,4 +40,15 @@
     background-color: #2593ff;
     color: #fff;
     cursor: pointer;
+}
+
+
+.container {
+    display: flex;
+    gap:1.25rem;
+    flex-direction: column;
+}
+
+.container h3{
+    margin-top: 1.5rem;
 }

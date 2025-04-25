@@ -5,14 +5,16 @@ import SearchAbleLayoutBar from "./components/SearchAbleLayoutBar";
 export default function Home() {
   
   return (
-    <div>
+    
+    <div className={style.container}>
       <section>
-        <h3></h3>
+        <h3>지금 추천하는 도서</h3>
       </section>
       <section>
-        <h3></h3>
+        <h3>등록된 모든 도서</h3>
       </section>
     </div>
+    
   );
 }
 
