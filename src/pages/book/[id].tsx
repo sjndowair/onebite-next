@@ -9,14 +9,15 @@ import {  GetStaticPropsContext, InferGetStaticPropsType } from "next"
         { params: { id: '1' } },
         { params: { id: '2' } },
         { params: { id: '3' } }, 
-      ],
-       fallback: "blocking" 
+      ], 
+       fallback: true,
     }
  }
 
   export const getStaticProps = async (context: GetStaticPropsContext) => {
-    const id = context?.params?.id
+    const id = context.params!.id
     try{
+      if(typeof id === "string"){
         const data = await fetchOneBook(Number(id))
     
         return {
@@ -24,11 +25,14 @@ import {  GetStaticPropsContext, InferGetStaticPropsType } from "next"
             data
           }
         }
+      }
+      
     }catch(err){
         console.error(err)
+        return null
     }
 
-    console.log(id)
+    
     
    
 
