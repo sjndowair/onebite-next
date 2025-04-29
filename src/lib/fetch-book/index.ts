@@ -1,7 +1,7 @@
 import {IBookItemProps} from "@/types/index"
 
 export const fetchBooks = async (q?: string): Promise<IBookItemProps[]> => {
-    // Construct API URL with optional search query before fetching
+    
     let API_URL = `http://localhost:12345/book`;
     if (q) {
         API_URL += `/Search?q=${encodeURIComponent(q)}`;
@@ -27,5 +27,20 @@ export const randomFetchBooks = async (): Promise<IBookItemProps[]> => {
     }catch(err){
         console.error(err)
         return []
+    }
+}
+
+
+export const fetchOneBook = async(id:number): Promise<IBookItemProps | null> => {
+    let API_URL  = `http://localhost:12345/book/${id}`
+    try{
+        const response = await fetch(API_URL);
+        if(!response.ok){
+            throw new Error();
+        } 
+        return response.json()
+    }catch(err){
+       console.error(err)
+        return null
     }
 }
