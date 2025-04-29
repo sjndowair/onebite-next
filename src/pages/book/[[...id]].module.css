@@ -1,0 +1,58 @@
+ .container {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    gap: 2rem;
+ }
+
+.cover_img_container {
+    display: flex;
+    justify-content: center;
+    padding: 1.25rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    position: relative;
+    
+}
+
+.cover_img_container:before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: aut;
+    height: auto;
+}
+
+.cover_img_container img {
+    position: relative;
+    z-index: 10;
+}
+
+.title {
+    font-weight: bold;
+    font-size: latge;
+}
+
+.subTitle{
+    font-size: medium;
+    color: gray
+}
+
+.author {
+    color: gray;
+}
+
+.description {
+    font-size: medium;
+ background-color: rgb(245,245,245);
+    padding:1rem;line-height: 1.3;
+    white-space: pre-wrap;
+    border-radius: 1rem;
+}

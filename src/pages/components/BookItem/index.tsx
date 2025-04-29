@@ -1,15 +1,8 @@
 import style from "../../bookItem.module.css"
 import Link from "next/link"
+import {IBookItemProps} from "../../../types/index"
 
-interface IBookItemProps{
-    id: number,
-    title: string,
-    subTitle: string,
-    description: string,
-    author: string,
-    publisher: string,
-    coverImgUrl: string
-}
+
 
 
 const BookItem = ({id, title, subTitle, description, author, publisher, coverImgUrl}: IBookItemProps) => {

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router"
+import style from "./[[...id]].module.css"
 
 
 const mockData =    {
@@ -24,16 +25,19 @@ const Book = () => {
     }
     
     
-    return (<div>
-        <div>
-            <div style={{backgroundImage:`url(${coverImgUrl})`}}>
+    return (
+    <div>
+        <div className={style.container}>
+            <div 
+            className={style.cover_img_container}
+            style={{backgroundImage:`url(${coverImgUrl})`}}>
                 <img src={coverImgUrl} alt={title} />
             </div>
-            <h1>{title}</h1>
-            <h2>{subTitle}</h2>
-            <p>{description}</p>
-            <p>Author: {author}</p>
-            <p>Publisher: {publisher}</p>
+            <h1 className={style.title}>{title}</h1>
+            <h2 className={style.subTitle}>{subTitle}</h2>
+            <p className={style.description}>{description}</p>
+            <p className={style.author}>Author: {author}</p>
+            <p className={style.publisher}>Publisher: {publisher}</p>
         </div>
     </div>)
 }
