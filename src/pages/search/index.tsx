@@ -18,6 +18,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 }
 
 const Search = ({data}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    console.log(data)
     return (
         <>
         {data.map((item) => (
