@@ -1,6 +1,5 @@
 import SearchAbleLayoutBar from "../components/SearchAbleLayoutBar";
 import BookItem from "../components/BookItem";
-
 import { fetchBooks } from "@/lib/fetch-book";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

@@ -1,11 +1,21 @@
-import style from "./[[...id]].module.css"
+import style from "./[id].module.css"
 import { fetchOneBook } from "@/lib/fetch-book"
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
+import {  GetStaticPropsContext, InferGetStaticPropsType } from "next"
 
 
+ export const getStaticPaths = () => {
+    return {
+      paths:[
+        { params: { id: '1' } },
+        { params: { id: '2' } },
+        { params: { id: '3' } }, 
+      ],
+       fallback: "blocking" 
+    }
+ }
 
-  export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const id = context?.query.id ;
+  export const getStaticProps = async (context: GetStaticPropsContext) => {
+    const id = context?.params?.id
     try{
         const data = await fetchOneBook(Number(id))
     
@@ -24,7 +34,7 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
 
   }
 
-const Book = ({data}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Book = ({data}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     if(data === null) return 
     const {id, title, subTitle, description, author, coverImgUrl, publisher} = data
