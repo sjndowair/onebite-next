@@ -2,12 +2,14 @@ import React from "react";
 import style  from "./index.module.css"
 import SearchAbleLayoutBar from "./components/SearchAbleLayoutBar";
 import BookItem from "./components/BookItem";
-import { InferGetServerSidePropsType } from "next";
+import {  InferGetStaticPropsType } from "next";
 import {fetchBooks, randomFetchBooks} from "../lib/fetch-book"
 
 
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
+  
+  console.log("인덱스 페이지 초기 데이터 가져오기 그이후로 출력이 안될거임")
   
   const [data, randomFetchBooksData] = await Promise.all([fetchBooks(), randomFetchBooks()])
   
@@ -24,7 +26,7 @@ try{
 }
   
 }
-export default function Home({data, randomFetchBooksData}:InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({data, randomFetchBooksData}:InferGetStaticPropsType<typeof getStaticProps>) {
   
 
   return (

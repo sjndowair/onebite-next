@@ -5,7 +5,7 @@ import {IBookItemProps} from "../../../types/index"
 
 
 
-const BookItem = ({id, title, subTitle, description, author, publisher, coverImgUrl}: IBookItemProps) => {
+const BookItem = ({id, title, subTitle,  author, publisher, coverImgUrl}: IBookItemProps) => {
     
     return (
         <>

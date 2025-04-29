@@ -5,7 +5,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import style from "../index.module.css"
 import Main from "../components/Main"
-import SearchAbleLayoutBar from  "../components/SearchAbleLayoutBar"
+
  
 interface ILayoutProps {
     children: ReactNode | string | number

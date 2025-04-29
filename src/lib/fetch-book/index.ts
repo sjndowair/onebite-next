@@ -32,7 +32,7 @@ export const randomFetchBooks = async (): Promise<IBookItemProps[]> => {
 
 
 export const fetchOneBook = async(id:number): Promise<IBookItemProps | null> => {
-    let API_URL  = `http://localhost:12345/book/${id}`
+    const API_URL  = `http://localhost:12345/book/${id}`
     try{
         const response = await fetch(API_URL);
         if(!response.ok){

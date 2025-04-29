@@ -1,27 +1,36 @@
 import SearchAbleLayoutBar from "../components/SearchAbleLayoutBar";
 import BookItem from "../components/BookItem";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+
 import { fetchBooks } from "@/lib/fetch-book";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { IBookItemProps } from "@/types";
 
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    console.log(context)
-    const q = context.query.q as string;
-    const data = await fetchBooks(q)
+
+
+const Search = () => {
+
+    const [book, setBook] = useState<IBookItemProps[]>([])
+
+    const router = useRouter();
+    const q= router.query.q as string;
     
-    return {
-        props:{
-            data
-        }
+    const getSearchBook = async () => {
+       const data = await fetchBooks(q);
+        setBook(data)
     }
-    
-}
 
-const Search = ({data}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    console.log(data)
+    useEffect(() => {
+        if(q){
+            getSearchBook()
+        }
+    },[q])
+
+
     return (
         <>
-        {data.map((item) => (
+        {book.map((item) => (
             <BookItem key={item.id} {...item} />
         ))}
         </>
