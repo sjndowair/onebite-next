@@ -1,5 +1,8 @@
 import { useRouter } from "next/router"
 import style from "./[[...id]].module.css"
+import { fetchBooks } from "@/lib/fetch-book"
+import {IBookItemProps} from "@/types/index"
+import { InferGetServerSidePropsType } from "next"
 
 
 const mockData =    {
@@ -12,7 +15,17 @@ const mockData =    {
     "coverImgUrl": "https://shopping-phinf.pstatic.net/main_3888828/38888282618.20230913071643.jpg"
   }
 
-const Book = () => {
+  const getServerSideProps = async() => {
+    const data = await fetchBooks()
+    return {
+        props:{
+            data
+        }
+    }
+
+  }
+
+const Book = ({data}:InferGetServerSidePropsType<typeof getServerSideProps> ) => {
 
     const {id, title, subTitle, description, author, coverImgUrl, publisher} = mockData
 

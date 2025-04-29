@@ -1,19 +1,22 @@
 import React from "react";
 import style  from "./index.module.css"
 import SearchAbleLayoutBar from "./components/SearchAbleLayoutBar";
-import mock from "@/mock/mock.json"
 import BookItem from "./components/BookItem";
 import { InferGetServerSidePropsType } from "next";
-import {fetchBooks} from "../lib/fetch-book"
+import {fetchBooks, randomFetchBooks} from "../lib/fetch-book"
 
 
 
 export const getServerSideProps = async () => {
-  const data = await fetchBooks()
+  
+  const [data, randomFetchBooksData] = await Promise.all([fetchBooks(), randomFetchBooks()])
+  
+
 try{
   return {
   props: {
     data,
+    randomFetchBooksData
   }
 }}catch(err){
   console.error(err)
@@ -21,15 +24,14 @@ try{
 }
   
 }
-export default function Home({data}:InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(data)
-   
+export default function Home({data, randomFetchBooksData}:InferGetServerSidePropsType<typeof getServerSideProps>) {
+  
 
   return (
     <div className={style.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
-        {data.map((book)=>(
+        {randomFetchBooksData.map((book)=>( 
           <BookItem key={book.id}  {...book} />
         ))}
       </section>

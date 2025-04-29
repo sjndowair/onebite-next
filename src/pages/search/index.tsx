@@ -1,11 +1,26 @@
 import SearchAbleLayoutBar from "../components/SearchAbleLayoutBar";
-import mock from "@/mock/mock.json"
 import BookItem from "../components/BookItem";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { fetchBooks } from "@/lib/fetch-book";
 
-const Search = () => {
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+    console.log(context)
+    const q = context.query.q as string;
+    const data = await fetchBooks(q)
+    
+    return {
+        props:{
+            data
+        }
+    }
+    
+}
+
+const Search = ({data}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <>
-        {mock.map((item) => (
+        {data.map((item) => (
             <BookItem key={item.id} {...item} />
         ))}
         </>

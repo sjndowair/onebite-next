@@ -18,7 +18,7 @@ const SearchAbleLayoutBar = ({children}: {children: React.ReactNode}) => {
     }
     const onClickSearch = () => {
         if(!value) return
-        router.push(`/Search/?q=${value}`)
+        router.push(`/Search?q=${value}`)
        
        
         
