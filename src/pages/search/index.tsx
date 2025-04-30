@@ -5,40 +5,34 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IBookItemProps } from "@/types";
 
-
-
-
 const Search = () => {
+  const [book, setBook] = useState<IBookItemProps[]>([]);
 
-    const [book, setBook] = useState<IBookItemProps[]>([])
+  const router = useRouter();
+  const q = router.query.q as string;
 
-    const router = useRouter();
-    const q= router.query.q as string;
-    
-    const getSearchBook = async () => {
-       const data = await fetchBooks(q);
-        setBook(data)
+  const getSearchBook = async () => {
+    const data = await fetchBooks(q);
+    setBook(data);
+  };
+
+  useEffect(() => {
+    if (q) {
+      getSearchBook();
     }
+  }, [q]);
 
-    useEffect(() => {
-        if(q){
-            getSearchBook()
-        }
-    },[q])
-
-
-    return (
-        <>
-        {book.map((item) => (
-            <BookItem key={item.id} {...item} />
-        ))}
-        </>
-    )
-    
-}
+  return (
+    <>
+      {book.map((item) => (
+        <BookItem key={item.id} {...item} />
+      ))}
+    </>
+  );
+};
 
 export default Search;
 
 Search.getLayout = (page: React.ReactNode) => {
-    return <SearchAbleLayoutBar>{page}</SearchAbleLayoutBar>;
-}
+  return <SearchAbleLayoutBar>{page}</SearchAbleLayoutBar>;
+};
