@@ -2,6 +2,7 @@ import style from "./[id].module.css";
 import { fetchOneBook } from "@/lib/fetch-book";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export const getStaticPaths = () => {
   return {
@@ -11,6 +12,9 @@ export const getStaticPaths = () => {
       { params: { id: "3" } },
     ],
     fallback: true,
+    //false: 404페이지로 이동
+    //blocking: SSR 방식 페이지가 반응 될때까지 대기
+    //true: SSR 방식 컴포넌트만 먼저 렌더링 시키고 이후에 데이터 가져오기
   };
 };
 
@@ -64,21 +68,30 @@ const Book = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }
 
   return (
-    <div>
-      <div className={style.container}>
-        <div
-          className={style.cover_img_container}
-          style={{ backgroundImage: `url(${coverImgUrl})` }}
-        >
-          <img src={coverImgUrl} alt={title} />
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:image" content={coverImgUrl} />
+        {/* 썸네일 설정 */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+      </Head>
+      <div>
+        <div className={style.container}>
+          <div
+            className={style.cover_img_container}
+            style={{ backgroundImage: `url(${coverImgUrl})` }}
+          >
+            <img src={coverImgUrl} alt={title} />
+          </div>
+          <h1 className={style.title}>{title}</h1>
+          <h2 className={style.subTitle}>{subTitle}</h2>
+          <p className={style.description}>{description}</p>
+          <p className={style.author}>Author: {author}</p>
+          <p className={style.publisher}>Publisher: {publisher}</p>
         </div>
-        <h1 className={style.title}>{title}</h1>
-        <h2 className={style.subTitle}>{subTitle}</h2>
-        <p className={style.description}>{description}</p>
-        <p className={style.author}>Author: {author}</p>
-        <p className={style.publisher}>Publisher: {publisher}</p>
       </div>
-    </div>
+    </>
   );
 };
 
