@@ -53,7 +53,20 @@ const Book = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Head>
+          <title>한입북스</title>
+          <meta property="og:image" content="/thumbnail.png" />
+          <meta property="og:title" content="한입북스" />
+          <meta
+            property="og:description"
+            content="한입북스에 등록된 모든 도서를 만나보세요"
+          />
+        </Head>
+        <div>Loading...</div>
+      </>
+    );
   }
 
   if (!data) {
